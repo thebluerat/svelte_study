@@ -1,17 +1,18 @@
-<!-- tick: 라이프사이클. 데이터가 갱신되고 나서 화면이 바뀌는 반응성을 가질 때까지 잠시 기다리게 해주는 능력이다. 실행 위치가 자유롭다. -->
+<!-- 보간법 -->
 
 <script>
-    import { tick } from 'svelte'
-    let name= 'world'
-
-    async function handler() {
-        name = 'ttoobi'
-        await tick()
-        const h1 = document.querySelector('h1')
-        console.log(h1.innerText)
-    }
-    // tick을 쓰기 전: Svelte의 최적화 방법으로 내부의 로직을 전부 다 실행하고 나서 화면을 갱신한다. 따라서 클릭을 한 후에도 log에는 Hello world!가 뜬다.
-    // tick이라는 함수는 promise 객체를 반환한다. 따라서 await를 붙여서 비동기로 실행해줘야 하고, 그러면 함수 앞에 async를 붙여줘야 한다.
+    let href = 'https://ttoobi.blog'
+    let name = 'ttoobi' 
+    let value = 'New input value!'
+    let isUpperCase = false
 </script>
 
-<h1 on:click={handler}>Hello {name}!</h1>
+<!-- <a href = "https://ttoobi.blog">ttoobi</a> -->
+<a {href}>{name}</a>
+<!-- 단방향 데이터에서는 속성과 데이터 이름이 같으면 속성을 생략할 수 있다 -->
+
+<!-- <input type = "text" value = "Default value"/> -->
+<input {value} on:input={e => value = e.target.value} />
+<!-- 화살표 함수는 인수가 하나이면 소괄호와 뒤의 중괄호를 생략할 수 있다. -->
+<input bind:value />
+<!-- 양방향 데이터는 속성과 데이터 이름이 같으면 데이터를 생략한다. -->
